@@ -69,7 +69,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             reload();
@@ -78,27 +77,20 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        //Invocamos al método:
         userRegister();
     }
 
     /** Called when the user taps the Send button */
     public void loginNow(View view) {
-        // Do something in response to button
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-
-    //********************* Inicio de la Logica requerida para esta Actividad ****************************//
 
     private void userRegister(){
         final DataBasicDTO dataBasicDTO;
         try{
             dataBasicDTO = validateRegister();
-            Log.d("tag", "Hola");
             this.createAccount(dataBasicDTO);
-
-            Log.d("tag", "como que si se creo, no puede ser");
             Toast.makeText(this, "Registro Exitoso",Toast.LENGTH_LONG).show();
         }catch (Exception exc){
             Toast.makeText(this, exc.getMessage(),Toast.LENGTH_LONG).show();
@@ -162,13 +154,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             saveAccount(data);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegistrationActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -179,6 +169,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void saveAccount(@NonNull DataBasicDTO data){
+        boolean sucess = false;
         Map<String, Object> user = new HashMap<>();
         user.put("nombre", data.getName());
         user.put("email", data.getEmail());
@@ -190,6 +181,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG2, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        returnAct();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -197,7 +189,17 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG2, "Error adding document", e);
                     }
+                }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                    }
                 });
+    }
+
+    private void returnAct(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private void reload() { }
