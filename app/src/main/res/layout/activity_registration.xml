@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="#FFFFFF"
     tools:context=".RegistrationActivity">
 
@@ -12,15 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/res_margin_top_label"
+        android:layout_marginStart="@dimen/txt_margin_sides"
         android:fontFamily="@font/quicksand_bold"
         android:padding="@dimen/txt_padding"
-        android:text="Registro"
+        android:text="@string/label_register"
         android:textColor="@color/colorText"
         android:textSize="@dimen/txt_size_title"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -33,7 +35,7 @@
         android:layout_marginTop="@dimen/res_margin_top_label"
         android:layout_marginEnd="@dimen/txt_margin_sides"
         android:ems="10"
-        android:hint="Nombre"
+        android:hint="@string/name"
         android:paddingHorizontal="@dimen/txt_padding"
         android:textColor="@color/colorTextView"
         android:textColorHint="@color/colorPlaceHolder"
@@ -63,7 +65,7 @@
         android:layout_marginTop="@dimen/res_margin_top_txt"
         android:layout_marginEnd="@dimen/txt_margin_sides"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:paddingHorizontal="@dimen/txt_padding"
         android:textColor="@color/colorTextView"
         android:textColorHint="@color/colorPlaceHolder"
@@ -94,7 +96,7 @@
         android:layout_marginTop="@dimen/res_margin_top_txt"
         android:layout_marginEnd="@dimen/txt_margin_sides"
         android:ems="10"
-        android:hint="Telefono"
+        android:hint="@string/phone"
         android:paddingHorizontal="@dimen/txt_padding"
         android:textColor="@color/colorTextView"
         android:textColorHint="@color/colorPlaceHolder"
@@ -124,7 +126,7 @@
         android:layout_marginTop="@dimen/res_margin_top_txt"
         android:layout_marginEnd="@dimen/txt_margin_sides"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/password"
         android:paddingHorizontal="@dimen/txt_padding"
         android:textColor="@color/colorTextView"
         android:textColorHint="@color/colorPlaceHolder"
@@ -154,7 +156,7 @@
         android:layout_marginTop="@dimen/res_margin_top_txt"
         android:layout_marginEnd="@dimen/txt_margin_sides"
         android:ems="10"
-        android:hint="Confirmar Contraseña"
+        android:hint="@string/confirm_password"
         android:paddingHorizontal="@dimen/txt_padding"
         android:textColor="@color/colorTextView"
         android:textColorHint="@color/colorPlaceHolder"
@@ -178,13 +180,14 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="320dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="@dimen/txt_margin_sides"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_margin_height"
+        android:layout_marginStart="@dimen/btn_margin_sides"
         android:layout_marginTop="@dimen/res_margin_top_txt"
+        android:layout_marginEnd="@dimen/btn_margin_sides"
         android:fontFamily="@font/quicksand_medium"
         android:layoutDirection="ltr"
-        android:text="Acepto los Términos de Servicio y Políticas de privacidad"
+        android:text="@string/terms_and_conditions"
         android:textColor="@color/colorText"
         android:textSize="@dimen/txt_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -196,13 +199,13 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="320dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_margin_height"
         android:layout_marginStart="@dimen/btn_margin_sides"
         android:layout_marginTop="@dimen/btn_margin_top_main"
         android:layout_marginEnd="@dimen/btn_margin_sides"
-        android:background="@drawable/boton_login"
-        android:text="Continuar"
+        android:background="@drawable/login_button"
+        android:text="@string/btn_continue"
         android:fontFamily="@font/quicksand_medium"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -211,34 +214,41 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/txtHasAnAccount"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/txtHasAnAccountLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/txt_margin_sides"
         android:layout_marginTop="@dimen/btn_margin_top_main"
-        android:layout_marginEnd="@dimen/btn_margin_sides"
+        android:gravity="center"
         android:fontFamily="@font/quicksand_bold"
-        android:text="¿Tienes una cuenta?"
+        android:text="@string/have_an_account"
         android:textColor="@color/colorTextLink"
         android:textSize="@dimen/txt_size_link"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/txtLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/btn_margin_top_main"
-        android:fontFamily="@font/quicksand_bold"
-        android:text="Iniciar sesión"
-        android:textColor="@color/colorLink"
-        android:textSize="@dimen/txt_size_link"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toEndOf="@+id/txtHasAnAccount"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        <TextView
+            android:id="@+id/txtHasAnAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/have_an_account"
+            android:textColor="@color/colorTextLink"
+            android:textSize="@dimen/txt_size_link" />
+
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="center"
+            android:onClick="loginNow"
+            android:text="@string/txt_login"
+            android:textColor="@color/colorLink"
+            android:textSize="@dimen/txt_size_link"
+            tools:ignore="OnClick" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
