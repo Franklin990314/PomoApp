@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">PomoApp</string>
+
+    <!-- variables para la pantalla de registro -->
+    <string name="label_register">Registro</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo</string>
+    <string name="phone">Teléfono</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="terms_and_conditions">Acepto los Términos de Servicio y Políticas de privacidad</string>
+    <string name="btn_continue">Continuar</string>
+    <string name="have_an_account">¿Tienes una cuenta?</string>
+    <string name="txt_login">&#160;&#160;Iniciar sesión</string>
+
+    <!-- variables para la pantalla de inicio de sesión -->
+    <string name="label_login">Inicio de Sesión</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="welcome">¡Bienvenido de nuevo!</string>
+    <string name="remember_password">Recordar contraseña</string>
+    <string name="register">Registrarse</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>

@@ -1,5 +1,6 @@
 package poli.edu.co.pomoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -47,6 +48,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         userRegister();
     }
 
+    /** Called when the user taps the Send button */
+    public void loginNow(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     //********************* Inicio de la Logica requerida para esta Actividad ****************************//
 
     private void userRegister(){
@@ -78,18 +86,17 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             throw new Exception("Se debe ingresar el nombre");
         }
 
-        if(TextUtils.isEmpty(telephone)){
-            throw new Exception("Se debe ingresar el telefono");
-        }
-
         if(TextUtils.isEmpty(email)){
             throw new Exception("Se debe ingresar un correo electronico");
+        }
+
+        if(TextUtils.isEmpty(telephone)){
+            throw new Exception("Se debe ingresar el telefono");
         }
 
         if(TextUtils.isEmpty(password)){
             throw new Exception("Se debe ingresar la contraseña");
         }
-
 
         if(TextUtils.isEmpty(confirmPassword)){
             throw new Exception("Se debe confirmar la contraseña");
