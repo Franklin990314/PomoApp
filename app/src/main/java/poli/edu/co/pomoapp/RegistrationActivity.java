@@ -8,8 +8,24 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import poli.edu.co.pomoapp.dto.DataBasicDTO;
 
@@ -23,51 +39,64 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private CheckBox checkBox;
     private Button btnLogin;
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private static final String TAG = "Registration";
+    private static final String TAG2 = "DB";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
         // Connection Firebase
         // TODO: realizar conexión a BD
-
         txtName = (EditText) findViewById(R.id.txtName);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtTelephone = (EditText) findViewById(R.id.txtTelephone);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
-
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
+
+    @Override
     public void onClick(View view) {
-        //Invocamos al método:
         userRegister();
     }
 
     /** Called when the user taps the Send button */
     public void loginNow(View view) {
-        // Do something in response to button
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-    //********************* Inicio de la Logica requerida para esta Actividad ****************************//
-
     private void userRegister(){
-
         final DataBasicDTO dataBasicDTO;
         try{
             dataBasicDTO = validateRegister();
+            this.createAccount(dataBasicDTO);
+            Toast.makeText(this, "Registro Exitoso",Toast.LENGTH_LONG).show();
         }catch (Exception exc){
             Toast.makeText(this, exc.getMessage(),Toast.LENGTH_LONG).show();
             return;
         }
 
-        Toast.makeText(this, "Registro Exitoso",Toast.LENGTH_LONG).show();
 
         // TODO: Guardar en BD
     }
@@ -117,5 +146,65 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         dataBasicDTO.setUser(email.split("@")[0]);
 
         return dataBasicDTO;
+    }
+
+    private void createAccount(@NonNull DataBasicDTO data) {
+        mAuth.createUserWithEmailAndPassword(data.getEmail(),data.getPassword())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                            saveAccount(data);
+                        } else {
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void saveAccount(@NonNull DataBasicDTO data){
+        boolean sucess = false;
+        Map<String, Object> user = new HashMap<>();
+        user.put("nombre", data.getName());
+        user.put("email", data.getEmail());
+        user.put("telefono", data.getTelephone());
+
+        db.collection("Usuarios")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG2, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        returnAct();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG2, "Error adding document", e);
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                    }
+                });
+    }
+
+    private void returnAct(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void reload() { }
+
+    private void updateUI(FirebaseUser user) {
+
     }
 }
