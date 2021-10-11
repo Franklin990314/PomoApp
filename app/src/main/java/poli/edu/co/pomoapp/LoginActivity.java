@@ -3,12 +3,20 @@ package poli.edu.co.pomoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import poli.edu.co.pomoapp.dto.CredentialDTO;
 
@@ -17,14 +25,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText textEmail;
     private EditText textPassword;
     private Button btnLogin;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Connection Firebase
-        // TODO: realizar conexión a BD
+        mAuth = FirebaseAuth.getInstance();
 
         textEmail = (EditText) findViewById(R.id.txtEmail);
         textPassword = (EditText) findViewById(R.id.txtPassword);
@@ -34,36 +41,54 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
+    private void reload() { }
+
+    @Override
     public void onClick(View view) {
         this.userLogin();
     }
 
-    /** Called when the user taps the Send button */
     public void registerNow(View view) {
-        // Do something in response to button
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 
-    //********************* Inicio de la Logica requerida para esta Actividad ****************************//
-
     private void userLogin() {
-
         CredentialDTO credentialDTO;
         try{
             credentialDTO = validateLogger();
+            mAuth.signInWithEmailAndPassword(credentialDTO.getEmail(),credentialDTO.getPassword())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                                Toast.makeText(LoginActivity.this, "Inicio de sesión Exitoso",Toast.LENGTH_LONG).show();
+                                nextActivity();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos, por favor intente de nuevo.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
+                        }
+                    });
         }catch (Exception exc){
-            Toast.makeText(this, exc.getMessage(),Toast.LENGTH_LONG).show();
             return;
         }
-
-        Toast.makeText(this, "Inicio de sesión Exitoso",Toast.LENGTH_LONG).show();
-
-        // TODO: Validar credenciales en BD
     }
 
-    public void nextActivity(String id){
-        // TODO: next activity
+
+    public void nextActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public CredentialDTO validateLogger() throws Exception{
@@ -86,5 +111,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         credentialDTO.setPassword(password);
 
         return credentialDTO;
+    }
+
+    private void updateUI(FirebaseUser user) {
+
     }
 }
