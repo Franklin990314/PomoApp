@@ -20,7 +20,7 @@
             android:id="@+id/imgLogo"
             android:layout_width="@dimen/logo_width"
             android:layout_height="@dimen/logo_height"
-            app:srcCompat="@drawable/main_logo" />
+            app:srcCompat="@drawable/full_logo_black" />
     </LinearLayout>
 
     <TextView
