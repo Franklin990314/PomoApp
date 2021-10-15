@@ -20,6 +20,22 @@
     <string name="remember_password">Recordar contraseña</string>
     <string name="register">Registrarse</string>
 
+    <!-- variables para errores lanzados desde Host -->
+    <string name="successful_login">Inicio de sesión Exitoso</string>
+    <string name="successful_registration">Inicio de sesión Exitoso</string>
+    <string name="incorrect_credentials">Usuario o contraseña incorrectos, por favor intente de nuevo</string>
+
+    <!-- variables para errores lanzados desde Host -->
+    <string name="error_email">Se debe ingresar un correo electronico</string>
+    <string name="error_password">Falta ingresar la contraseña</string>
+    <string name="error_name">Se debe ingresar el nombre</string>
+    <string name="error_telephone">Se debe ingresar el teléfono</string>
+    <string name="error_pass_form">Se debe ingresar la contraseña</string>
+    <string name="error_pass_conf">Se debe confirmar la contraseña</string>
+    <string name="error_pass_not_match">Las contraseñas no coinciden</string>
+    <string name="error_accep_term">Debe aceptar los términos y condiciones</string>
+    <string name="error_auth_failed">Fallo de autentificación</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -28,6 +44,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_task">Tareas</string>
+    <string name="menu_report">Reporte</string>
+    <string name="menu_pomodoro">Pomodoro</string>
 </resources>

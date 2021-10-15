@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText textPassword;
     private Button btnLogin;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             reload();
         }
     }
+
     private void reload() { }
 
     @Override
@@ -71,16 +73,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
-                                Toast.makeText(LoginActivity.this, "Inicio de sesión Exitoso",Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, String.valueOf(getResources().getString(R.string.successful_login)), Toast.LENGTH_LONG).show();
                                 nextActivity();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos, por favor intente de nuevo.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, String.valueOf(getResources().getString(R.string.incorrect_credentials)), Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
                         }
                     });
-        }catch (Exception exc){
+        } catch (Exception exc) {
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_LONG).show();
             return;
         }
     }
@@ -94,17 +96,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public CredentialDTO validateLogger() throws Exception{
         CredentialDTO credentialDTO = new CredentialDTO();
 
-        //Obtenemos el email y la contraseña desde las cajas de texto
+        // Obtenemos el email y la contraseña desde las cajas de texto
         final String email = textEmail.getText().toString().trim();
         String password = textPassword.getText().toString().trim();
 
-        //Verificamos que las cajas de texto no esten vacías
-        if (TextUtils.isEmpty(email)) {//(precio.equals(""))
-            throw new Exception("Se debe ingresar un email");
+        // Verificamos que las cajas de texto no esten vacías
+        if (TextUtils.isEmpty(email)) {
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_email)));
         }
 
         if (TextUtils.isEmpty(password)) {
-            throw new Exception("Falta ingresar la contraseña");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_password)));
         }
 
         credentialDTO.setEmail(email);

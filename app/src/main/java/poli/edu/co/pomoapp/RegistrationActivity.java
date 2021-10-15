@@ -91,14 +91,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         try{
             dataBasicDTO = validateRegister();
             this.createAccount(dataBasicDTO);
-            Toast.makeText(this, "Registro Exitoso",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.valueOf(getResources().getString(R.string.successful_registration)), Toast.LENGTH_LONG).show();
         }catch (Exception exc){
-            Toast.makeText(this, exc.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_LONG).show();
             return;
         }
-
-
-        // TODO: Guardar en BD
     }
 
     private final DataBasicDTO validateRegister() throws Exception {
@@ -112,31 +109,31 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String confirmPassword = txtConfirmPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(name)){
-            throw new Exception("Se debe ingresar el nombre");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_name)));
         }
 
         if(TextUtils.isEmpty(email)){
-            throw new Exception("Se debe ingresar un correo electronico");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_email)));
         }
 
         if(TextUtils.isEmpty(telephone)){
-            throw new Exception("Se debe ingresar el telefono");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_telephone)));
         }
 
         if(TextUtils.isEmpty(password)){
-            throw new Exception("Se debe ingresar la contraseña");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_form)));
         }
 
         if(TextUtils.isEmpty(confirmPassword)){
-            throw new Exception("Se debe confirmar la contraseña");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_conf)));
         }
 
         if(TextUtils.equals(password, confirmPassword)==false) {
-            throw new Exception("Las contraseñas no coinciden");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_not_match)));
         }
 
         if(!checkBox.isChecked()) {
-            throw new Exception("Debe aceptar los términos y condiciones");
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_accep_term)));
         }
 
         dataBasicDTO.setName(name);
@@ -150,22 +147,21 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private void createAccount(@NonNull DataBasicDTO data) {
         mAuth.createUserWithEmailAndPassword(data.getEmail(),data.getPassword())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            saveAccount(data);
-                        } else {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "createUserWithEmail:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                        saveAccount(data);
+                    } else {
+                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(RegistrationActivity.this, String.valueOf(getResources().getString(R.string.error_auth_failed)), Toast.LENGTH_SHORT).show();
+                        updateUI(null);
                     }
-                });
+                }
+            });
     }
 
     private void saveAccount(@NonNull DataBasicDTO data){
