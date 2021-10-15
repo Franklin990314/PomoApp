@@ -20,6 +20,22 @@
     <string name="remember_password">Remember password</string>
     <string name="register">Register</string>
 
+    <!-- variables para errores lanzados desde Host -->
+    <string name="successful_login">Successful Login</string>
+    <string name="successful_registration">Successful Registration</string>
+    <string name="incorrect_credentials">Incorrect username or password, please try again</string>
+
+    <!-- variables para la pantalla de inicio de sesión -->
+    <string name="error_email">You must enter an email address</string>
+    <string name="error_password">Password is missing</string>
+    <string name="error_name">You must enter the name</string>
+    <string name="error_telephone">You must enter the phone number</string>
+    <string name="error_pass_form">You must enter the password</string>
+    <string name="error_pass_conf">You must confirm the password</string>
+    <string name="error_pass_not_match">Passwords do not match</string>
+    <string name="error_accep_term">You must accept the terms and conditions</string>
+    <string name="error_auth_failed">Authentication failed</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
