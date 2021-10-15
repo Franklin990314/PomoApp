@@ -73,15 +73,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
-                                Toast.makeText(LoginActivity.this, String.valueOf(R.string.successful_login), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, String.valueOf(getResources().getString(R.string.successful_login)), Toast.LENGTH_LONG).show();
                                 nextActivity();
                             } else {
-                                Toast.makeText(LoginActivity.this, String.valueOf(R.string.incorrect_credentials), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, String.valueOf(getResources().getString(R.string.incorrect_credentials)), Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
                         }
                     });
         } catch (Exception exc) {
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_LONG).show();
             return;
         }
     }
@@ -101,11 +102,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Verificamos que las cajas de texto no esten vacías
         if (TextUtils.isEmpty(email)) {
-            throw new Exception(String.valueOf(R.string.error_email));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_email)));
         }
 
         if (TextUtils.isEmpty(password)) {
-            throw new Exception(String.valueOf(R.string.error_password));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_password)));
         }
 
         credentialDTO.setEmail(email);

@@ -91,7 +91,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         try{
             dataBasicDTO = validateRegister();
             this.createAccount(dataBasicDTO);
-            Toast.makeText(this, String.valueOf(R.string.successful_registration), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.valueOf(getResources().getString(R.string.successful_registration)), Toast.LENGTH_LONG).show();
         }catch (Exception exc){
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_LONG).show();
             return;
@@ -109,31 +109,31 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String confirmPassword = txtConfirmPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(name)){
-            throw new Exception(String.valueOf(R.string.error_name));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_name)));
         }
 
         if(TextUtils.isEmpty(email)){
-            throw new Exception(String.valueOf(R.string.error_email));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_email)));
         }
 
         if(TextUtils.isEmpty(telephone)){
-            throw new Exception(String.valueOf(R.string.error_telephone));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_telephone)));
         }
 
         if(TextUtils.isEmpty(password)){
-            throw new Exception(String.valueOf(R.string.error_pass_form));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_form)));
         }
 
         if(TextUtils.isEmpty(confirmPassword)){
-            throw new Exception(String.valueOf(R.string.error_pass_conf));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_conf)));
         }
 
         if(TextUtils.equals(password, confirmPassword)==false) {
-            throw new Exception(String.valueOf(R.string.error_pass_not_match));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_not_match)));
         }
 
         if(!checkBox.isChecked()) {
-            throw new Exception(String.valueOf(R.string.error_accep_term));
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_accep_term)));
         }
 
         dataBasicDTO.setName(name);
@@ -157,7 +157,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         saveAccount(data);
                     } else {
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        Toast.makeText(RegistrationActivity.this, String.valueOf(R.string.error_auth_failed), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this, String.valueOf(getResources().getString(R.string.error_auth_failed)), Toast.LENGTH_SHORT).show();
                         updateUI(null);
                     }
                 }
