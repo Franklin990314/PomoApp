@@ -8,7 +8,7 @@
     <string name="phone">Teléfono</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
-    <string name="terms_and_conditions">Acepto los Términos de Servicio y Políticas de privacidad</string>
+    <string name="terms_and_conditions"><Data><![CDATA[Acepto los <a href="https://dl.dropboxusercontent.com/s/d1p5g6o7gfe7nhw/Testing.txt?dl=0">Términos de Servicio</a> y <a href="https://dl.dropboxusercontent.com/s/d1p5g6o7gfe7nhw/Testing.txt?dl=0">Políticas de privacidad</a> ]]> </Data></string>
     <string name="btn_continue">Continuar</string>
     <string name="have_an_account">¿Tienes una cuenta?</string>
     <string name="txt_login">&#160;&#160;Iniciar sesión</string>
