@@ -62,6 +62,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
+    public void resetPassword(View view) {
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
+        startActivity(intent);
+    }
+
     private void userLogin() {
         CredentialDTO credentialDTO;
         try{
