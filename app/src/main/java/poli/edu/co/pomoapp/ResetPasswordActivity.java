@@ -7,9 +7,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText txtEmail;
+    private TextView textLabel;
+    private TextView textInformative;
     private Button btnResetPassword;
     private String email;
     private ProgressDialog progressDialog;
@@ -34,7 +38,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         btnResetPassword = (Button) findViewById(R.id.btnResetPassword);
+        textLabel = (TextView) findViewById(R.id.txtLabel);
+        textInformative = (TextView) findViewById(R.id.txtInformative);
 
+        textLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_title) / getResources().getDisplayMetrics().density));
+        textInformative.setTextSize(TypedValue.COMPLEX_UNIT_PX, 35f);
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,10 +3,12 @@ package poli.edu.co.pomoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -36,6 +38,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private EditText txtEmail;
     private EditText txtPassword;
     private EditText txtConfirmPassword;
+    private TextView textLabel;
+    private TextView textHasAnAccount;
+    private TextView textLogin;
     private CheckBox checkBox;
     private Button btnLogin;
 
@@ -46,6 +51,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Connection Firebase
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -54,8 +60,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         db.setFirestoreSettings(settings);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        // Connection Firebase
-        // TODO: realizar conexión a BD
         txtName = (EditText) findViewById(R.id.txtName);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtTelephone = (EditText) findViewById(R.id.txtTelephone);
@@ -63,6 +67,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        textLabel = (TextView) findViewById(R.id.txtLabel);
+        textHasAnAccount = (TextView) findViewById(R.id.txtHasAnAccount);
+        textLogin = (TextView) findViewById(R.id.txtLogin);
+
+        textLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_title) / getResources().getDisplayMetrics().density));
+        textHasAnAccount.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
+        textLogin.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
         btnLogin.setOnClickListener(this);
     }
 

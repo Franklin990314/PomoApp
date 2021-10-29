@@ -3,10 +3,11 @@ package poli.edu.co.pomoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText textEmail;
     private EditText textPassword;
+    private TextView textLabelLogin;
+    private TextView textWelcome;
+    private TextView textRememberPassword;
     private Button btnLogin;
     private FirebaseAuth mAuth;
 
@@ -34,10 +38,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
 
+        btnLogin = (Button) findViewById(R.id.buttonSignIn);
+        textLabelLogin = (TextView) findViewById(R.id.txtLabelLogin);
+        textWelcome = (TextView) findViewById(R.id.txtWelcome);
+        textRememberPassword = (TextView) findViewById(R.id.txtRememberPassword);
         textEmail = (EditText) findViewById(R.id.txtEmail);
         textPassword = (EditText) findViewById(R.id.txtPassword);
 
-        btnLogin = (Button) findViewById(R.id.buttonSignIn);
+        textLabelLogin.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_title) / getResources().getDisplayMetrics().density));
+        textWelcome.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
+        textRememberPassword.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
         btnLogin.setOnClickListener(this);
     }
 
