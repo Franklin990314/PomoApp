@@ -171,23 +171,37 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="36dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/txt_margin_sides"
+        <LinearLayout
+            android:id="@+id/safsad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/res_margin_top_txt"
+            android:layout_marginStart="@dimen/res_margin_top_txt"
             android:layout_marginEnd="@dimen/res_margin_top_txt"
-            android:fontFamily="@font/quicksand_medium"
-            android:layoutDirection="ltr"
-            android:textColor="@color/colorText"
-            android:textSize="@dimen/txt_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/have_an_account"
+            android:textColor="@color/colorTextLink"
             app:layout_constraintTop_toBottomOf="@+id/txtConfirmPasswordLayout"
-            app:layout_constraintVertical_bias="0.006" />
+            tools:ignore="MissingConstraints">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:layoutDirection="ltr"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/quicksand_medium"
+                android:gravity="center_vertical"
+                android:layoutDirection="ltr"
+                android:text="TextView" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnLogin"
@@ -203,7 +217,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/safsad"
             app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
@@ -239,21 +253,6 @@
                 tools:ignore="OnClick" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="298dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="@dimen/txt_margin_sides"
-            android:fontFamily="@font/quicksand_medium"
-            android:gravity="left"
-            android:layoutDirection="ltr"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/txtConfirmPasswordLayout" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
