@@ -2,7 +2,9 @@ package poli.edu.co.pomoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +46,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private TextView textLogin;
     private CheckBox checkBox;
     private Button btnLogin;
+    private TextView txtTermsConditions;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -67,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        txtTermsConditions = (TextView) findViewById(R.id.textView3);
         textLabel = (TextView) findViewById(R.id.txtLabel);
         textHasAnAccount = (TextView) findViewById(R.id.txtHasAnAccount);
         textLogin = (TextView) findViewById(R.id.txtLogin);
@@ -74,6 +79,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         textLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_title) / getResources().getDisplayMetrics().density));
         textHasAnAccount.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
         textLogin.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
+        txtTermsConditions.setText(Html.fromHtml(getString(R.string.terms_and_conditions)));
+        ((TextView) txtTermsConditions.findViewById(R.id.textView3)).setMovementMethod(LinkMovementMethod.getInstance());
         btnLogin.setOnClickListener(this);
     }
 

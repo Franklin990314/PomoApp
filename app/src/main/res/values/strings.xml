@@ -9,7 +9,7 @@
     <string name="phone">Teléfono</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
-    <string name="terms_and_conditions">Acepto los Términos de Servicio y Políticas de privacidad</string>
+    <string name="terms_and_conditions"><Data><![CDATA[Acepto los <a href="https://onedrive.live.com/embed?cid=7B4B52AA75A62037&resid=7B4B52AA75A62037%215185&authkey=AF_6HmACX_5gwYo&em=2">Términos de Servicio</a> y <a href="https://onedrive.live.com/embed?cid=7B4B52AA75A62037&resid=7B4B52AA75A62037%215186&authkey=AHC1gkhT-GI4bAc&em=2">Políticas de privacidad</a> ]]> </Data></string>
     <string name="btn_continue">Continuar</string>
     <string name="have_an_account">¿Tienes una cuenta?</string>
     <string name="txt_login">&#160;&#160;Iniciar sesión</string>
