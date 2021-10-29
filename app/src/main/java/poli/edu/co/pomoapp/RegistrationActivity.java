@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -40,6 +41,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private EditText txtEmail;
     private EditText txtPassword;
     private EditText txtConfirmPassword;
+    private TextView textLabel;
+    private TextView textHasAnAccount;
+    private TextView textLogin;
     private CheckBox checkBox;
     private Button btnLogin;
     private TextView txtTermsConditions;
@@ -51,6 +55,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Connection Firebase
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -59,18 +64,23 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         db.setFirestoreSettings(settings);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        // Connection Firebase
-        // TODO: realizar conexión a BD
         txtName = (EditText) findViewById(R.id.txtName);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtTelephone = (EditText) findViewById(R.id.txtTelephone);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
         txtTermsConditions = (TextView) findViewById(R.id.textView3);
+        textLabel = (TextView) findViewById(R.id.txtLabel);
+        textHasAnAccount = (TextView) findViewById(R.id.txtHasAnAccount);
+        textLogin = (TextView) findViewById(R.id.txtLogin);
+
+        textLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_title) / getResources().getDisplayMetrics().density));
+        textHasAnAccount.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
+        textLogin.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
         txtTermsConditions.setText(Html.fromHtml(getString(R.string.terms_and_conditions)));
         ((TextView) txtTermsConditions.findViewById(R.id.textView3)).setMovementMethod(LinkMovementMethod.getInstance());
-        btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
     }
 
