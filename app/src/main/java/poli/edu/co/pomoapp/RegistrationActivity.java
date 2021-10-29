@@ -2,15 +2,19 @@ package poli.edu.co.pomoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +42,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private EditText txtConfirmPassword;
     private CheckBox checkBox;
     private Button btnLogin;
+    private TextView txtTermsConditions;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -62,6 +67,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
+        txtTermsConditions = (TextView) findViewById(R.id.textView3);
+        txtTermsConditions.setText(Html.fromHtml(getString(R.string.terms_and_conditions)));
+        ((TextView) txtTermsConditions.findViewById(R.id.textView3)).setMovementMethod(LinkMovementMethod.getInstance());
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
     }
