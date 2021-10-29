@@ -8,7 +8,7 @@
     <string name="phone">Phone</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="terms_and_conditions"><Data><![CDATA[I agree to the <a href="https://dl.dropboxusercontent.com/s/d1p5g6o7gfe7nhw/Testing.txt?dl=0">Terms of Service</a> and <a href="https://dl.dropboxusercontent.com/s/d1p5g6o7gfe7nhw/Testing.txt?dl=0">Privacy Policy</a> ]]> </Data></string>
+    <string name="terms_and_conditions"><Data><![CDATA[I agree to the <a href="https://onedrive.live.com/embed?cid=7B4B52AA75A62037&resid=7B4B52AA75A62037%215196&authkey=AEXdi-dNt-YEZ2g&em=2">Terms of Service</a> and <a href="https://onedrive.live.com/embed?cid=7B4B52AA75A62037&resid=7B4B52AA75A62037%215193&authkey=AE5_3Y1uN9Y2JDk&em=2">Privacy Policy</a> ]]> </Data></string>
     <string name="btn_continue">Continue</string>
     <string name="have_an_account">Have an account?</string>
     <string name="txt_login">&#160;&#160;Login</string>
