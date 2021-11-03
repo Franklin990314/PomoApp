@@ -12,14 +12,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_profile"
+        android:name="poli.edu.co.pomoapp.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
         android:id="@+id/nav_task"
-        android:name="poli.edu.co.pomoapp.ui.gallery.GalleryFragment"
+        android:name="poli.edu.co.pomoapp.ui.task.TaskFragment"
         android:label="@string/menu_task"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_task" />
 
     <fragment
         android:id="@+id/nav_report"
-        android:name="poli.edu.co.pomoapp.ui.slideshow.SlideshowFragment"
+        android:name="poli.edu.co.pomoapp.ui.report.ReportFragment"
         android:label="@string/menu_report"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_report" />
+
+    <fragment
+        android:id="@+id/nav_pomodoro"
+        android:name="poli.edu.co.pomoapp.ui.pomodoro.PomodoroFragment"
+        android:label="@string/menu_pomodoro"
+        tools:layout="@layout/fragment_pomodoro" />
 </navigation>
