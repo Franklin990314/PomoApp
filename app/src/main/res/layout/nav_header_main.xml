@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/txt_padding"
         android:fontFamily="@font/quicksand_bold"
-        android:text="@string/nav_header_title"
         android:textColor="@color/colorText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -34,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quicksand_bold"
-        android:textColor="@color/colorTextLink"
-        android:text="@string/nav_header_subtitle" />
+        android:textColor="@color/colorTextLink" />
 
 </LinearLayout>
