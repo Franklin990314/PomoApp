@@ -3,14 +3,12 @@ package poli.edu.co.pomoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,7 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     private TextView textEmail;
     private TextView textName;
@@ -45,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        if (navigationView != null) {
-            navigationView.setNavigationItemSelectedListener(this);
-        }
     }
 
     @Override
@@ -68,16 +63,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     private void reload() { }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.nav_log_out) {
-            mAuth.signOut();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return true;
+    public void logOut(View view) {
+        mAuth.signOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void getCustomerInfo() {

@@ -20,6 +20,20 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_margin_height"
+            android:layout_margin="@dimen/txt_margin_sides"
+            android:background="@drawable/register_button"
+            android:text="@string/menu_log_out"
+            android:onClick="logOut"
+            android:fontFamily="@font/quicksand_medium"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="bottom" />
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
