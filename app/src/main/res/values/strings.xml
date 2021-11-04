@@ -50,14 +50,18 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_profile">Mi perfil</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_profile">Perfil</string>
     <string name="menu_task">Tareas</string>
     <string name="menu_report">Reporte</string>
     <string name="menu_pomodoro">Pomodoro</string>
     <string name="menu_log_out">Cerrar sesión</string>
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello pomodoro fragment</string>
+    <string name="hello_home_fragment">Este es el fragmento de inicio</string>
+    <string name="hello_pomodoro_fragment">Este es el fragmento de pomodoro</string>
+    <string name="hello_profile_fragment">Este es el fragmento de perfil</string>
+    <string name="hello_report_fragment">Este es el fragmento de reporte</string>
+    <string name="hello_task_fragment">Este es el fragmento de tareas</string>
 </resources>

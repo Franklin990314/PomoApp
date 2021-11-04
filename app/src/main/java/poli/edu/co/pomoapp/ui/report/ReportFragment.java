@@ -23,7 +23,8 @@ public class ReportFragment extends Fragment {
         reportViewModel =
                 new ViewModelProvider(this).get(ReportViewModel.class);
         View root = inflater.inflate(R.layout.fragment_report, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
+        final TextView textView = root.findViewById(R.id.text_report);
+        reportViewModel.setText(String.valueOf(getResources().getString(R.string.hello_report_fragment)));
         reportViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
