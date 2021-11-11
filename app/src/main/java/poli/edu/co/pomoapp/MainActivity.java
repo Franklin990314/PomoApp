@@ -2,14 +2,21 @@ package poli.edu.co.pomoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,14 +31,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView textName;
     private AppBarConfiguration mAppBarConfiguration;
     private NavigationView navigationView;
+
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+    private static final String TAG = "DB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -52,7 +63,24 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             reload();
         }
-        this.getCustomerInfo();
+        DocumentReference docRef = db.collection("Usuarios").document(currentUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        String name = document.getData().get("nombre").toString();
+                        getCustomerInfo(name);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     @Override
@@ -70,27 +98,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void getCustomerInfo() {
+    private void getCustomerInfo(String name) {
         View headerLayout = navigationView.getHeaderView(0);
         textEmail = (TextView) headerLayout.findViewById(R.id.txtEmail);
         textName = (TextView) headerLayout.findViewById(R.id.txtName);
-
         textName.setTextSize(TypedValue.COMPLEX_UNIT_PX, (getResources().getDimension(R.dimen.txt_size_link) / getResources().getDisplayMetrics().density));
-
         textEmail.setText(currentUser.getEmail());
-        // TODO: Crear lógica con consulta a BD
-        String name = "";
-        if (currentUser.getEmail().equals("joas@gmail.com")){
-            name = "jesus octavio";
-        } else if (currentUser.getEmail().equals("djlenon25@gmail.com")){
-            name = "leleal";
-        } else if (currentUser.getEmail().equals("leal88-@hotmasil.com")){
-            name = "leonardo leaal";
-        } else if (currentUser.getEmail().equals("d4n6l4ck@gmail.com")){
-            name = "Alexo";
-        } else if (currentUser.getEmail().equals("nicolasherrang98@gmail.com")){
-            name = "Frank Nicolas Herran Garzón";
-        }
         textName.setText(name);
     }
 }

@@ -15,7 +15,6 @@ import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
@@ -110,6 +109,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             dataBasicDTO = validateRegister();
             this.createAccount(dataBasicDTO);
             Toast.makeText(this, String.valueOf(getResources().getString(R.string.successful_registration)), Toast.LENGTH_LONG).show();
+            Thread.sleep(2000);
+            this.loginNow(null);
         }catch (Exception exc){
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_LONG).show();
             return;
@@ -142,6 +143,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_form)));
         }
 
+        if(password.length() < 6) {
+            throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_invalid)));
+        }
+
         if(TextUtils.isEmpty(confirmPassword)){
             throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_conf)));
         }
@@ -172,6 +177,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         Log.d(TAG, "createUserWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
+                        data.setId(user.getUid());
                         saveAccount(data);
                     } else {
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -183,30 +189,24 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void saveAccount(@NonNull DataBasicDTO data){
-        boolean sucess = false;
         Map<String, Object> user = new HashMap<>();
         user.put("nombre", data.getName());
         user.put("email", data.getEmail());
         user.put("telefono", data.getTelephone());
 
-        db.collection("Usuarios")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        CollectionReference usersRef = db.collection("Usuarios");
+        usersRef.document(data.getId())
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG2, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        returnAct();
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG2, "DocumentSnapshot successfully written!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG2, "Error adding document", e);
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-
                     }
                 });
     }

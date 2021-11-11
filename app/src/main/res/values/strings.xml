@@ -23,7 +23,7 @@
 
     <!-- variables para errores lanzados desde Host -->
     <string name="successful_login">Inicio de sesión Exitoso</string>
-    <string name="successful_registration">Inicio de sesión Exitoso</string>
+    <string name="successful_registration">Registro Exitoso</string>
     <string name="incorrect_credentials">Usuario o contraseña incorrectos, por favor intente de nuevo</string>
 
     <!-- variables para errores lanzados desde Host -->
@@ -32,6 +32,7 @@
     <string name="error_name">Se debe ingresar el nombre</string>
     <string name="error_telephone">Se debe ingresar el teléfono</string>
     <string name="error_pass_form">Se debe ingresar la contraseña</string>
+    <string name="error_pass_invalid">La contraseña debe tener al menos 6 caracteres</string>
     <string name="error_pass_conf">Se debe confirmar la contraseña</string>
     <string name="error_pass_not_match">Las contraseñas no coinciden</string>
     <string name="error_accep_term">Debe aceptar los términos y condiciones</string>
