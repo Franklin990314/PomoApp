@@ -56,6 +56,15 @@
     <string name="reset_password_unsuccessful">Unable to send password reset mail</string>
     <string name="reset_password_wait">Wait a moment...</string>
 
+    <!-- variables para la Perfil -->
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="error_new_pass_form">You must enter the new password</string>
+    <string name="error_new_pass_conf">You must confirm the new password</string>
+    <string name="error_update_email">Failure. Could not update email</string>
+    <string name="error_update_pass">Failed. Could not update password</string>
+    <string name="update_profile">User profile correctly updated</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -66,6 +75,7 @@
     <string name="menu_report">Report</string>
     <string name="menu_pomodoro">Pomodoro</string>
     <string name="menu_log_out">Log out</string>
+    <string name="menu_failure">Failure. Could not obtain user information</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_home_fragment">This is home fragment</string>

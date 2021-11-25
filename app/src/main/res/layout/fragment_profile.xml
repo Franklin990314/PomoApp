@@ -1,22 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_profile"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/txt_margin_sides"
+        tools:context=".RegistrationActivity">
+
+        <LinearLayout
+            android:id="@+id/txtBasicDataLabelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/view_bottom_border_layout"
+            android:gravity="end|center"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/txtBasicDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/quicksand_bold"
+                android:padding="@dimen/txt_padding"
+                android:text="Datos Basicos"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:background="@drawable/view_bottom_border"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_label"
+            android:hint="@string/name"
+            android:paddingHorizontal="@dimen/txt_padding"
+            android:textColor="@color/colorTextView"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:boxBackgroundMode="filled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBasicDataLabelLayout"
+            app:layout_constraintVertical_bias="0.0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtEmailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_txt"
+            android:ems="10"
+            android:hint="@string/email"
+            android:paddingHorizontal="@dimen/txt_padding"
+            android:textColor="@color/colorTextView"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:boxBackgroundMode="filled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNameLayout"
+            app:layout_constraintVertical_bias="0.0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="textWebEmailAddress|textEmailAddress|textEmailSubject" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTelephoneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_txt"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:paddingHorizontal="@dimen/txt_padding"
+            android:textColor="@color/colorTextView"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:boxBackgroundMode="filled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmailLayout"
+            app:layout_constraintVertical_bias="0.0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTelephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="number|phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/txtPasswordLabelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_label"
+            android:background="@drawable/view_bottom_border_layout"
+            app:layout_constraintTop_toBottomOf="@+id/txtTelephoneLayout"
+            android:gravity="end|center"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/txtPasswordLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/quicksand_bold"
+                android:padding="@dimen/txt_padding"
+                android:text="Contraseña"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:background="@drawable/view_bottom_border"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_label"
+            android:ems="10"
+            android:hint="@string/new_password"
+            android:paddingHorizontal="@dimen/txt_padding"
+            android:textColor="@color/colorTextView"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:boxBackgroundMode="filled"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPasswordLabelLayout"
+            app:layout_constraintVertical_bias="0.0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtConfirmPasswordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_txt"
+            android:hint="@string/confirm_new_password"
+            android:paddingHorizontal="@dimen/txt_padding"
+            android:textColor="@color/colorTextView"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:boxBackgroundMode="filled"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPasswordLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/checkBoxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_txt"
+            android:layout_marginStart="@dimen/res_margin_top_txt"
+            android:layout_marginEnd="@dimen/res_margin_top_txt"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/have_an_account"
+            android:textColor="@color/colorTextLink"
+            android:gravity="end"
+            app:layout_constraintTop_toBottomOf="@+id/txtConfirmPasswordLayout"
+            tools:ignore="MissingConstraints">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="Modificar contraseña"
+                android:textColor="@color/colorLink"
+                android:layoutDirection="rtl" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_margin_height"
+            android:layout_marginStart="@dimen/res_margin_top_txt"
+            android:layout_marginTop="@dimen/btn_margin_top_main"
+            android:layout_marginEnd="@dimen/res_margin_top_txt"
+            android:background="@drawable/login_button"
+            android:text="Guardar"
+            android:fontFamily="@font/quicksand_medium"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxLayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -56,6 +56,15 @@
     <string name="reset_password_unsuccessful">No se pudo enviar el correo de restablecimiento de contraseña</string>
     <string name="reset_password_wait">Espera un momento...</string>
 
+    <!-- variables para la Perfil -->
+    <string name="new_password">Nueva contraseña</string>
+    <string name="confirm_new_password">Confirmar nueva contraseña</string>
+    <string name="error_new_pass_form">Se debe ingresar la nueva contraseña</string>
+    <string name="error_new_pass_conf">Se debe confirmar la nueva contraseña</string>
+    <string name="error_update_email">Fallo. No se pudo actualizar el correo electrónico</string>
+    <string name="error_update_pass">Fallo. No se pudo actualizar la contraseña</string>
+    <string name="update_profile">Perfil del usuario actualizado correctamente</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -66,6 +75,7 @@
     <string name="menu_report">Reporte</string>
     <string name="menu_pomodoro">Pomodoro</string>
     <string name="menu_log_out">Cerrar sesión</string>
+    <string name="menu_failure">Fallo. No se pudo obtener la información del usuario</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_home_fragment">Este es el fragmento de inicio</string>

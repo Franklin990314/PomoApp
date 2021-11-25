@@ -6,6 +6,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -75,9 +76,11 @@ public class MainActivity extends AppCompatActivity {
                         getCustomerInfo(name);
                     } else {
                         Log.d(TAG, "No such document");
+                        Toast.makeText(MainActivity.this, String.valueOf(getResources().getString(R.string.menu_failure)), Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
+                    Toast.makeText(MainActivity.this, String.valueOf(getResources().getString(R.string.menu_failure)), Toast.LENGTH_LONG).show();
                 }
             }
         });

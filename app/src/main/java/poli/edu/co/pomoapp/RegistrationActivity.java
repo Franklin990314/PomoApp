@@ -151,7 +151,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_conf)));
         }
 
-        if(TextUtils.equals(password, confirmPassword)==false) {
+        if(!TextUtils.equals(password, confirmPassword)) {
             throw new Exception(String.valueOf(getResources().getString(R.string.error_pass_not_match)));
         }
 
