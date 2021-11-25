@@ -33,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/res_margin_top_label"
-            android:ems="10"
             android:hint="@string/name"
             android:paddingHorizontal="@dimen/txt_padding"
             android:textColor="@color/colorTextView"
@@ -172,7 +171,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
-            android:id="@+id/safsad"
+            android:id="@+id/checkBoxLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/res_margin_top_txt"
@@ -217,7 +216,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/safsad"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxLayout"
             app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout

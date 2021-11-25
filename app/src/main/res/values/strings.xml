@@ -21,6 +21,16 @@
     <string name="remember_password">Recordar contraseña</string>
     <string name="register">Registrarse</string>
 
+    <!-- variables para la pantalla de tareas-->
+    <string name="label_task">Tareas</string>
+    <string name="task">Tarea</string>
+    <string name="task_list">Lista de tareas</string>
+    <string name="add_task_list">+ Añadir lista</string>
+    <string name="add_task">+ Añadir tarea</string>
+    <string name="delete">Eliminar</string>
+    <string name="delete_task">Eliminar tarea</string>
+    <string name="delete_task_list">Eliminar lista</string>
+
     <!-- variables para errores lanzados desde Host -->
     <string name="successful_login">Inicio de sesión Exitoso</string>
     <string name="successful_registration">Registro Exitoso</string>

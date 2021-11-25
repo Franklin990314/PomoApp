@@ -1,22 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.task.TaskFragment">
+    android:layout_height="wrap_content"
+    tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/text_task"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="@dimen/txt_margin_sides"
+        tools:context=".ui.task.TaskFragment">
+
+        <LinearLayout
+            android:id="@+id/txtAddListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|center"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/txtAddList"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:text="@string/add_task_list"
+                android:textColor="@color/colorLink"
+                tools:ignore="OnClick" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/parent_task_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/res_margin_top_txt"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddListLayout"
+            android:gravity="end|center"
+            android:orientation="vertical"/>
+
+        <LinearLayout
+            android:id="@+id/txtPomodoroLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/parent_task_list_layout"
+            android:gravity="end|center"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/btnPomodoro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_margin_height"
+                android:layout_marginStart="@dimen/res_margin_top_txt"
+                android:layout_marginTop="@dimen/btn_margin_top_main"
+                android:layout_marginEnd="@dimen/res_margin_top_txt"
+                android:layout_marginBottom="@dimen/btn_margin_sides"
+                android:background="@drawable/register_button"
+                android:text="@string/menu_pomodoro"
+                android:fontFamily="@font/quicksand_medium"
+                android:textColor="@color/colorPrimary"
+                tools:ignore="OnClick" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

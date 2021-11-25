@@ -21,6 +21,16 @@
     <string name="remember_password">Remember password</string>
     <string name="register">Register</string>
 
+    <!-- variables para la pantalla de tareas-->
+    <string name="label_task">Tasks</string>
+    <string name="task">Task</string>
+    <string name="task_list">Task list</string>
+    <string name="add_task_list">+ Add list</string>
+    <string name="add_task">+ Add task</string>
+    <string name="delete">Remove</string>
+    <string name="delete_task">Remove task</string>
+    <string name="delete_task_list">Remove list</string>
+
     <!-- variables para errores lanzados desde Host -->
     <string name="successful_login">Successful Login</string>
     <string name="successful_registration">Successful Registration</string>
@@ -52,7 +62,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
-    <string name="menu_task">Task</string>
+    <string name="menu_task">Tasks</string>
     <string name="menu_report">Report</string>
     <string name="menu_pomodoro">Pomodoro</string>
     <string name="menu_log_out">Log out</string>
