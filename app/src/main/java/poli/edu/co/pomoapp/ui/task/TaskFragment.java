@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,8 +32,7 @@ public class TaskFragment extends Fragment {
     private Button buttonDelete;
     private Button buttonPomodoro;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         View root = inflater.inflate(R.layout.fragment_task, container, false);
 
@@ -45,6 +45,13 @@ public class TaskFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 addNewTaskList(root, inflater);
+            }
+        });
+
+        buttonPomodoro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), String.valueOf(getResources().getString(R.string.pomodoro_init)), Toast.LENGTH_LONG).show();
             }
         });
 
